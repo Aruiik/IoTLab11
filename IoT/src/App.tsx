@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import DeviceThermostatIcon from '@mui/icons-material/DeviceThermostat';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import OpacityIcon from '@mui/icons-material/Opacity';
-import { LineChart } from '@mui/x-charts';
+import Charts from './components/Charts';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -128,16 +128,9 @@ function App() {
             </div>
 
             <div className='chartStyle' style={{ flex: 1, minWidth: 600 }}>
-              <LineChart
-                height={300}
-                width={1000}
-                series={[
-                  { data: devices[selectedDevice]?.chartData?.pData ?? [], label: 'Pressure x10 [hPa]', color: '#00cfd6' },
-                  { data: devices[selectedDevice]?.chartData?.uData ?? [], label: 'Humidity [%]', color: '#a259f7' },
-                  { data: devices[selectedDevice]?.chartData?.tData ?? [], label: 'Temperature [°C]', color: '#ff00c3' },
-                ]}
-                xAxis={[{ scaleType: 'point', data: xLabels }]}
-                yAxis={[{}]}
+              <Charts
+                chartData={devices[selectedDevice]?.chartData}
+                xLabels={xLabels}
                 margin={margin}
               />
             </div>
